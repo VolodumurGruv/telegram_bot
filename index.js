@@ -12,7 +12,7 @@ bot.onText(/\/echo(.+)/, (msg, match) => {
 	const chatId = msg.chat.id;
 	const resp = match[1];
 	const time = Date().getTime();
-	notes.push({ time });
+	notes.push({ time: time });
 	bot.sendMessage(chatId, resp);
 });
 
