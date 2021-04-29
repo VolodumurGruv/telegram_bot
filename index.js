@@ -3,6 +3,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 const TelegramBot = require("node-telegram-bot-api");
+const { notStrictEqual } = require("node:assert");
 const botApi = process.env.HEROKU_BOT;
 
 const bot = new TelegramBot(botApi, { polling: true });
@@ -10,7 +11,8 @@ const bot = new TelegramBot(botApi, { polling: true });
 bot.onText(/\/echo(.+)/, (msg, match) => {
 	const chatId = msg.chat.id;
 	const resp = match[1];
-
+	const time = Date().getTime();
+	notes.push({ time });
 	bot.sendMessage(chatId, resp);
 });
 
